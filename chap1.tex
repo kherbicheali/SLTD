@@ -1,0 +1,36 @@
+\chapter{\textsc{Analyse du procédé en boucle ouverte}}
+\section{\textsc{ Analyse du modèle à temps discret de l'ensemble (bloqueur d'ordre $0$, procédé en boucle ouverte) }}
+\subsection{\textsc{La description sur les matrices d'état $ A_d,\hspace{1mm}B_d $ et $ C_d $ }}
+
+De la représentation d'état on trouve :
+	\begin{center}
+		$ \dot{x}(t)=Ax(t)+Bu(t)$\\
+ 		$ \Longrightarrow  x(t) = e^{At} x(0) + \overset{t}{\underset{0}{ \int }} e^{ A(t-h)} Bu(h) dh $\\
+ 		et $y(t)=Cx(t) $
+	\end{center}
+Soit $T_e$ la période d'échantillonnage, avec: $t \in [kT_e,(k+1)T_e]$, et $u(t)=cste=u$:\\
+
+	\begin{center}
+		$ x[(k+1)T_e] = e^{AT_e} x(kT_e) + \overset{T_e}{\underset{0}{ \int }} e^{ A(T_e-h)} Bu(h) dh $\\
+ 		$ x[(k+1)T_e] = e^{AT_e} x(kT_e) +  \overset{t}{\underset{0}{ \int }} e^{ A(T_e-h)}dh Bu $ \\[0.5 cm]
+ 		\end{center}
+ 		
+ 		Du coup: \\
+ 		\begin{center}
+ 		$ x[(k+1)T_e] = e^{AT_e} x(kT_e) + [A^{-1}(e^{AT_e}-I_d)] Bu $ si $A$ est inversible.\\[0.25 cm]
+ 		et $y(kT_e)=Cx(kT_e)$
+	\end{center}
+Par identification avec les relations suivantes:\\ 
+	\begin{center}
+		$ x[(k+1)T_e] = A_d x(kT_e) + B_d u(kT_e) $\\
+ 		et $y(kT_e)=C_d x(kT_e)$\\
+	\end{center}	
+On trouve: 
+	\begin{center}
+		$ A_d = e^{AT_e} $\\
+		$ B_d = A^{-1}(e^{AT_e}-I_d) $ si $A$ est inversible.\\  
+ 		$ C_d = C $
+	\end{center}
+
+	
+	

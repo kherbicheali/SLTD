@@ -1,0 +1,62 @@
+\chapter*{\textsc{Introduction}}
+\addcontentsline{toc}{chapter}{\textsc{Introduction}}
+
+	\paragraph{} Le but de cette manipulation est de'implémenter une loi de commande par retour de sortie sur un procédé complexe. Elle comporte trois parties : 
+	
+	\begin{itemize} [label=\ding{70},font=\small \color{black}]
+  	\item la première partie concerne l'analyse sommaire du procédé selon qu'il est commandé et observé en contenu ou bien de manière échantillonnée par calculateur;\\ 
+    \item dans un deuxième temps, on synthétise une commande par retour d'état assurant un asservissement de la sortie avec une précision suffisante et un régime transitoire compatible avec le domaine de fonctionnement normal du système; \\
+    \item un estimateur permettant de reconstruire les états du système inaccessibles à la mesure est ensuite mis en place; la loi de commande précédente est alors modifiée de façon à effectuer le retour sur les états éstimés, puis elle est implémentée sur le procédé.\\
+	\end{itemize}
+	
+	\begin{center}
+	\includegraphics[scale=0.4]{bille.jpg}
+	\captionof{figure}{\textit{Platine <<bille sur rail>> \\}}
+	\label{fig1} 
+	\end{center}	
+
+\break
+\chapter{\textsc{Représentation d'état du procédé }}
+
+	\begin{center}
+	\includegraphics[scale=0.2]{procede.jpg}
+	\captionof{figure}{\textit{représentation schématique de la platine <<bille sur rail>> \\}}
+	\label{fig2} 
+	\end{center}	
+L'étude mécanique a conduit à la représentation d'état suivante:\\
+
+	\begin{center}
+		$ \dot{x}(t)=Ax(t)+Bu(t)$ \\[0.25 cm]
+		$y(t)=Cx(t) $
+
+	\end{center}
+Avec $x(t)=[x_1(t) \hspace{1 mm} x_2(t) \hspace{1 mm} x_3(t) \hspace{1 mm} x_4(t)]^T, \hspace{1 mm} y(t) = [y_1(t), \hspace{1 mm} y_2(t)]^T $, et :\\
+
+$A = \begin{pmatrix}
+	0 & 1 & 0 & 0 \\
+	A_{21} & 0 & A_{23} & A_{24} \\
+	0 & 0 & 0 & 1 \\
+	A_{41} & 0 & A_{43} & A_{44}  
+\end{pmatrix} \hspace{0.25 cm} B = \begin{pmatrix}
+	0 \\
+	B_2 \\
+	0 \\
+	B_4  
+\end{pmatrix} \hspace{0.25 cm} C = \begin{pmatrix}
+	1 & 0 & 0 & 0 \\
+	0 & 0 & 1 & 0 
+\end{pmatrix}$
+
+Les quatre composants du vecteur d'état $x(t)$ sont donc, respectivement et avec les conventions de signes définies plus haut:
+
+\begin{itemize} [label=\ding{70},font=\small \color{black}]
+  	\item  $x_1(t)$ : la position de la bille sur le rail (en $m$).
+    \item  $x_2(t)$ : la vitesse de la bille sur le rail (en $m.s^{-1}$).
+    \item  $x_3(t)$ : l'angle entre le rail et l'horizontale (en $rad$).
+    \item  $x_4(t)$ : la vitesse  angulaire (en $rad.s^{-1}$).
+	\end{itemize}
+
+Pour la bille en acier, les coefficients des matrices dynamique et de commande des représentations précédentes sont les suivants:\\
+$A_{21}= -0.3421 s^{-2} \hspace{2 cm} A_{23}= 6.5982 s^{-2} \hspace{2 cm} A_{24}= 0.0310 s^{-2} $\\
+$ A_{21}= 18.8975 s^{-2} \hspace{2 cm} A_{23}= -0.3404 s^{-2} \hspace{2 cm} A_{44}= -1.7130 s^{-2} $\\
+$ B_2 = -0.0633 kg^{-1} \hspace{2 cm} B_4 = 3.4960 kg^{-1}  $\\
